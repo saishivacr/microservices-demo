@@ -1,7 +1,8 @@
 #!/bin/bash
 
-services=("adservice" "cartservice" "checkoutservice" "currencyservice" "emailservice" "frontend" "loadgenerator" "paymentservice" "productcatalogservice" "recommendationservice" "shippingservice")
+root_dir=$(pwd)
 
+services=("adservice" "cartservice" "checkoutservice" "currencyservice" "emailservice" "frontend" "loadgenerator" "paymentservice" "productcatalogservice" "recommendationservice" "shippingservice")
 
 echo "Login to ECR service"
 aws ecr-public get-login-password --region us-east-1 | sudo docker login --username AWS --password-stdin public.ecr.aws/y3f2n1o2
@@ -17,5 +18,6 @@ do
     fi
     sudo docker build -t public.ecr.aws/y3f2n1o2/$service .
     sudo docker push public.ecr.aws/y3f2n1o2/$service
+    cd $root_dir
     echo "Built and pushed $service"
 done
