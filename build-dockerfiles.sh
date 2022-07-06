@@ -4,8 +4,8 @@ services=("adservice" "cartservice" "checkoutservice" "currencyservice" "emailse
 
 
 echo "Login to ECR service"
-# aws ecr-public get-login-password --region us-east-1 | sudo docker login --username AWS --password-stdin public.ecr.aws/y3f2n1o2
-sudo docker login -u AWS -p $(aws ecr-public get-login-password --region us-east-1) public.ecr.aws/y3f2n1o2
+aws ecr-public get-login-password --region us-east-1 | sudo docker login --username AWS --password-stdin public.ecr.aws/y3f2n1o2
+# sudo docker login -u AWS -p $(aws ecr-public get-login-password --region us-east-1) public.ecr.aws/y3f2n1o2
 
 for service in "${services[@]}"
 do
