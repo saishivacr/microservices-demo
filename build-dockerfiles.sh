@@ -1,6 +1,6 @@
 #!/bin/bash
 
-services = ('adservice','cartservie')
+services = ('adservice','cartservice','checkoutservice','currencyservice','emailservice','frontend','loadgenerator','paymentservice','productcatalogservice','recommendationservice','shippingservice')
 
 
 for service in "${services[@]}"
