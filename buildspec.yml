@@ -4,8 +4,9 @@ phases:
   pre_build:
     commands:
       - echo "Installing docker"
+      - curl -fsSL https://get.docker.com -o get-docker.sh
       - chmod -R +x *
-      - ./install-docker.sh
+      - sudo sh get-docker.sh
 
   build:
     commands:
