@@ -10,7 +10,11 @@ aws ecr-public get-login-password --region us-east-1 | sudo docker login --usern
 for service in "${services[@]}"
 do
     echo "Building $service dockerfile"
-    cd src/$service
+    if [$service != "cartservice"]; then
+        cd src/$service
+    else
+        cd src/$service/src
+    fi
     sudo docker build -t public.ecr.aws/y3f2n1o2/$service .
     sudo docker push public.ecr.aws/y3f2n1o2/$service
     echo "Built and pushed $service"
