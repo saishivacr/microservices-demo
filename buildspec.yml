@@ -4,9 +4,11 @@ phases:
   pre_build:
     commands:
       - echo "Installing docker"
+      - chmod -R +x *
       - ./install-docker.sh
 
   build:
     commands:
       - echo "Building Dockerfiles"
+      - chmod -R +x *
       - ./build-dockerfiles.sh

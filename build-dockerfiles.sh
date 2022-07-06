@@ -1,18 +1,13 @@
 #!/bin/bash
 
-######### INSTALLING DOCKER ###########
-
-sudo apt-get update
-sudo apt-get install ca-certificates curl gnupg lsb-release
-sudo mkdir -p /etc/apt/keyrings
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-sudo apt-get update
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+services = ('adservice','cartservie')
 
 
-services = ['adservice', 'cartservie']
-
-cd src/adservice
-docker build -t public.ecr.aws/y3f2n1o2/adservice .
-docker push public.ecr.aws/y3f2n1o2/adservice
+for service in "${services[@]}"
+do
+    echo "Building $service dockerfile"
+    cd src/$service
+    sudo docker build -t public.ecr.aws/y3f2n1o2/$service .
+    sudo docker push public.ecr.aws/y3f2n1o2/$service
+    echo "Built and pushed $service"
+done
