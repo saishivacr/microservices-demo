@@ -11,8 +11,7 @@ aws ecr-public get-login-password --region us-east-1 | sudo docker login --usern
 for service in "${services[@]}"
 do
     echo "Building $service dockerfile"
-    if ["$service" != "cartservice"] 
-    then
+    if [ "$service" != "cartservice" ]; then 
         cd src/$service
     else
         cd src/$service/src
