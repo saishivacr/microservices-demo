@@ -20,7 +20,7 @@ do
     sudo docker build -t $service .
     
     # Tag and push docker image to ECR
-    sudo docker tag $sercice:latest 876737291315.dkr.ecr.us-east-1.amazonaws.com/$service:latest
+    sudo docker tag $service:latest 876737291315.dkr.ecr.us-east-1.amazonaws.com/$service:latest
     sudo docker push 876737291315.dkr.ecr.us-east-1.amazonaws.com/$service:latest
     
     cd $root_dir
